@@ -1,0 +1,32 @@
+
+Please Replace 'PLACE-TODO-ID' via your own todo id when using updating & deleting command.
+
+######Adding a todo:
+
+curl --location --request POST 'http://localhost:3000/todo/addTodo' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "title" : "todo1",
+    "description" : "todo 1 description"
+} '
+
+######Listing all todos:
+
+curl --location --request GET 'http://localhost:3000/todo/listTodos' \
+--header 'Content-Type: application/json' \
+--data-raw ''
+
+######Updating a todo via id:
+
+curl --location --request PUT 'http://localhost:3000/todo/PLACE-TODO-ID' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "title" : "todo1 ",
+    "description" : "todo1 description"
+} '
+
+#####Delete a todo via id:
+
+curl --location --request DELETE 'http://localhost:3000/todo/PLACE-TODO-ID' \
+--header 'Content-Type: application/json' \
+--data-raw ''
