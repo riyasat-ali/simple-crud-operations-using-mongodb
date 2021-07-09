@@ -16,6 +16,7 @@ curl --location --request GET 'http://localhost:3000/todo/listTodos' \
 --header 'Content-Type: application/json' \
 --data-raw ''
 
+
 ######Updating a todo via id:
 
 curl --location --request PUT 'http://localhost:3000/todo/PLACE-TODO-ID' \
