@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": ""
   },
-  "author": "Aakash Raghav",
+  "author": "Riyasat Ali",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
