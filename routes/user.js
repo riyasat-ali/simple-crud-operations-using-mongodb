@@ -1,4 +1,6 @@
 const express = require('express');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 //User Model
@@ -18,10 +20,8 @@ router.post('/register', async (req,res) => {
         cpassword: req.body.cpassword
       })
 
-      const token = await registerUser.generateAuthToken();
-
       const registered = await registerUser.save();
-      res.status(200).send({ Message: 'user created successfully'});
+      res.status(200).send({ Message: 'user created successfully' });
     } else {
       res.send("Password are not matching!")
     }
@@ -30,23 +30,23 @@ router.post('/register', async (req,res) => {
   }
 });
 
-//Create a new user in out database
+//Login the user
 router.post('/login', async (req,res) => {
   try {
     const password = req.body.password;
     const email = req.body.email;
 
-    const useremail = await Register.findOne({email: email});
+    const useremail = await Register.findOne({ email: email });
     const isMatch = bcrypt.compare(password, useremail.password);
 
-    const token = await useremail.generateAuthToken();
-    console.log("the token part", token);
+    let accessToken = jwt.sign({ useremail }, process.env.SECRET_KEY, { expiresIn: "5m" });
     if (isMatch) {
-      res.status(200).send({ Message: 'user login successfully'});
+      res.status(200).send({ Message: 'user login successfully', accessToken: accessToken });
     } else {
       res.send("invalid password details");
     }
   } catch (error){
+    console.log("here", error);
     res.status(400).send("invalid login details");
   }
 });

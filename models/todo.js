@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 
 const todoSchema = mongoose.Schema({
-  title:{
+  title: {
     type: String,
     required: true
   },
-  description:{
+  description: {
     type: String,
     required: true
   }
-})
+});
 
 const todo =  mongoose.model('Todo', todoSchema);
 
